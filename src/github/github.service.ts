@@ -1,8 +1,12 @@
-import { HttpService, Injectable } from '@nestjs/common';
+import { Injectable, HttpService } from '@nestjs/common';
 
 @Injectable()
 export class GithubService {
   constructor(private httpService: HttpService) {}
+
+  async healthcheck(): Promise<any> {
+    return 'Serviço respondendo na rota padrão';
+  }
 
   async findAllCountRepositories() {
     console.log(

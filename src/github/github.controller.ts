@@ -5,9 +5,9 @@ import { GithubService } from './github.service';
 export class GithubController {
   constructor(private githubService: GithubService) {}
 
-  @Get()
-  helfcheck() {
-    console.log('serviço funcionando');
+  @Get('')
+  async healthcheck(): Promise<any> {
+    return await this.githubService.healthcheck();
   }
 
   @Get('/all')
