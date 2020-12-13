@@ -5,8 +5,8 @@ import { GithubService } from './github.service';
 export class GithubController {
   constructor(private githubService: GithubService) {}
 
-  @Get('')
-  async healthcheck(): Promise<any> {
+  @Get()
+  async healthcheck(): Promise<string> {
     return await this.githubService.healthcheck();
   }
 

@@ -1,28 +1,22 @@
 import { Injectable, HttpService } from '@nestjs/common';
-
+import axios from 'axios';
 @Injectable()
 export class GithubService {
-  constructor(private httpService: HttpService) {}
+  constructor(private http: HttpService) {}
 
-  async healthcheck(): Promise<any> {
+  async healthcheck(): Promise<string> {
     return 'Serviço respondendo na rota padrão';
   }
 
   async findAllCountRepositories() {
-    console.log(
-      '::: Efetuando chamada ao github, trazer o total de repositórios :::',
-    );
-    const response = await this.httpService
-      .get('https://api.github.com/users/globocom')
-      .toPromise();
+    const response = await axios.get('https://api.github.com/users/globocom');
     return response.data;
   }
 
   async findAllRepositories() {
-    console.log('::: Efetuando chamada ao github, trazer os repositórios :::');
-    const response = await this.httpService
-      .get('https://api.github.com/users/globocom/repos')
-      .toPromise();
+    const response = await axios.get(
+      'https://api.github.com/users/globocom/repos',
+    );
     return response.data;
   }
 }
